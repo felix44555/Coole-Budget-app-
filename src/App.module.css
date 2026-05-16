@@ -47,7 +47,11 @@
 .tabs {
   display: flex;
   gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+
+.tabs::-webkit-scrollbar { display: none; }
 
 .tab {
   background: none;
@@ -61,6 +65,7 @@
   cursor: pointer;
   transition: color 0.15s, border-color 0.15s;
   flex: 1;
+  white-space: nowrap;
 }
 
 .tab:active { opacity: 0.7; }
@@ -217,6 +222,135 @@
   transition: width 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* DONUT */
+.donutWrap {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.donutLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  flex: 1;
+  min-width: 150px;
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  color: #888;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.legendVal {
+  color: #e8e6e0;
+  font-weight: 500;
+}
+
+/* HORIZONTAL BARS */
+.hbars {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hbar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hbarLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #888;
+}
+
+.hbarDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.hbarVal {
+  margin-left: auto;
+  color: #e8e6e0;
+  font-weight: 500;
+}
+
+/* MONTH BARS */
+.monthBars {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.monthBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 8px;
+}
+
+.monthBarValue {
+  font-family: 'Syne', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #e8e6e0;
+}
+
+.monthBarTrack {
+  height: 110px;
+  width: 100%;
+  max-width: 60px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: #0c0c0f;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.monthBarFill {
+  width: 100%;
+  border-radius: 6px;
+  transition: height 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  min-height: 2px;
+}
+
+.monthBarLabel {
+  font-size: 10px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
 /* FORM */
 .addBtn {
   display: block;
@@ -282,6 +416,13 @@
   cursor: pointer;
 }
 
+.hint {
+  font-size: 11px;
+  color: #f0b429;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+
 .checkRow {
   display: flex;
   align-items: center;
@@ -311,6 +452,7 @@
 }
 
 .submitBtn:active { opacity: 0.8; }
+.submitBtn:disabled { opacity: 0.4; cursor: not-allowed; }
 
 /* SECTIONS */
 .section { margin-bottom: 20px; }
@@ -338,9 +480,10 @@
   gap: 10px;
 }
 
-.entryInfo { flex: 1; min-width: 0; }
+.entryInfo { flex: 1; min-width: 0; cursor: pointer; }
 .entryLabel { font-size: 14px; color: #e8e6e0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .entrySub { font-size: 11px; color: #444; margin-top: 2px; display: flex; align-items: center; gap: 8px; }
+.entrySub2 { font-size: 10px; color: #555; margin-top: 2px; }
 
 .badge {
   font-size: 9px;
@@ -352,7 +495,7 @@
   padding: 1px 6px;
 }
 
-.entryRight { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+.entryRight { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
 .entryAmount { font-size: 15px; font-weight: 600; }
 
 .deleteBtn {
@@ -428,3 +571,46 @@
 }
 
 .resetBtn:active { color: #f87171; border-color: #f87171; }
+
+/* IMPORT */
+.importText {
+  font-size: 12px;
+  color: #888;
+  line-height: 1.6;
+}
+
+.importSummary {
+  background: #111116;
+  border: 1px solid #1e1e24;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.importSummaryLabel {
+  font-size: 10px;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.importSummaryVal {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  color: #e8e6e0;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+.importRow {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #141418;
+  cursor: pointer;
+  gap: 8px;
+}
